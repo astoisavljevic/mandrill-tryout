@@ -5,6 +5,8 @@ package rs.in.staleksit.learning.mandrill.service;
 
 import rs.in.staleksit.learning.mandrill.model.user.InfoRequest;
 import rs.in.staleksit.learning.mandrill.model.user.InfoResponse;
+import rs.in.staleksit.learning.mandrill.model.user.Ping2Response;
+import rs.in.staleksit.learning.mandrill.model.user.PingRequest;
 
 /**
  * @author aleksandar
@@ -12,6 +14,12 @@ import rs.in.staleksit.learning.mandrill.model.user.InfoResponse;
  */
 public interface UserService {
 	
-	InfoResponse ping(InfoRequest request);
+	InfoResponse getUserInfo(InfoRequest request);
+	
+	String ping(PingRequest request);
+	
+	Ping2Response ping2(PingRequest request);
+	
+	
 
 }
