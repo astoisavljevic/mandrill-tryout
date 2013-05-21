@@ -3,7 +3,8 @@
  */
 package rs.in.staleksit.learning.mandrill.service;
 
-import rs.in.staleksit.learning.mandrill.model.user.PingRequest;
+import rs.in.staleksit.learning.mandrill.model.user.InfoRequest;
+import rs.in.staleksit.learning.mandrill.model.user.InfoResponse;
 
 /**
  * @author aleksandar
@@ -11,6 +12,6 @@ import rs.in.staleksit.learning.mandrill.model.user.PingRequest;
  */
 public interface UserService {
 	
-	void ping(PingRequest request);
+	InfoResponse ping(InfoRequest request);
 
 }

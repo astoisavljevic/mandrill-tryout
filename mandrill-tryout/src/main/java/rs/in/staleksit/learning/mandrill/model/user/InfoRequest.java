@@ -12,12 +12,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author aleksandar
  *
  */
-public class PingRequest implements Serializable {
+public class InfoRequest implements Serializable {
 	private static final long serialVersionUID = -7496531789115805402L;
 	
 	private String key;
 	
-	public PingRequest(String key) {
+	public InfoRequest(String key) {
 		this.key = key;
 	}
 

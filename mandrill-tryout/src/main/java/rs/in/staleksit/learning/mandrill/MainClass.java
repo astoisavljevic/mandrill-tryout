@@ -5,7 +5,7 @@ package rs.in.staleksit.learning.mandrill;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import rs.in.staleksit.learning.mandrill.model.user.PingRequest;
+import rs.in.staleksit.learning.mandrill.model.user.InfoRequest;
 import rs.in.staleksit.learning.mandrill.service.UserService;
 import rs.in.staleksit.learning.mandrill.service.impl.UserServiceImpl;
 
@@ -22,7 +22,7 @@ public class MainClass {
 		@SuppressWarnings("resource")
 		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
 		UserService userService = appContext.getBean(UserServiceImpl.class);
-		userService.ping(new PingRequest("sVlj-TYbFP6bvWYKIFYb9A"));
+		userService.ping(new InfoRequest("sVlj-TYbFP6bvWYKIFYb9A"));
 	}
 
 }
