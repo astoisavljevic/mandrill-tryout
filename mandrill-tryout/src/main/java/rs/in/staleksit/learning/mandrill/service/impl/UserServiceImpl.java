@@ -12,11 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import rs.in.staleksit.learning.mandrill.model.user.InfoRequest;
+import rs.in.staleksit.learning.mandrill.model.request.KeyRequest;
 import rs.in.staleksit.learning.mandrill.model.user.InfoResponse;
 import rs.in.staleksit.learning.mandrill.model.user.Ping2Response;
-import rs.in.staleksit.learning.mandrill.model.user.PingRequest;
-import rs.in.staleksit.learning.mandrill.model.user.Sender;
+import rs.in.staleksit.learning.mandrill.model.user.SenderResponse;
 import rs.in.staleksit.learning.mandrill.service.UserService;
 
 /**
@@ -28,58 +27,75 @@ public class UserServiceImpl implements UserService {
 	
 	private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 	
-	@Autowired
-	@Qualifier("restTemplate")
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	public UserServiceImpl(@Qualifier("restTemplate") RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
 
-	public InfoResponse getUserInfo(InfoRequest request) {
+	public InfoResponse getUserInfo(KeyRequest request) {
 		InfoResponse result = new InfoResponse();
-		log.info("-+- infoRequest: {} -+-", request);
+		if (log.isDebugEnabled()) {
+			log.debug("-+- infoRequest: {} -+-", request);
+		}
 		ResponseEntity<InfoResponse> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/info.json", request, InfoResponse.class);
 		
 		if (fetchResult.getStatusCode() == HttpStatus.OK) {
 			result = fetchResult.getBody();
-			log.info("-+- infoResponse: {} -+-", result);
+			if (log.isDebugEnabled()) {
+				log.debug("-+- infoResponse: {} -+-", result);
+			}
 		}
 		
 		return result;
 	}
 
-	public String ping(PingRequest request) {
+	public String ping(KeyRequest request) {
 		String result = "";
-		log.info("-+- pingRequest: {} -+-", request);
+		if (log.isDebugEnabled()) {
+			log.debug("-+- pingRequest: {} -+-", request);
+		}
 		ResponseEntity<String> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/ping.json", request, String.class);
 
 		if (fetchResult.getStatusCode() == HttpStatus.OK) {
 			result = fetchResult.getBody();
-			log.info("-+- pingResponse: {} -+-", result);
+			if (log.isDebugEnabled()) {
+				log.debug("-+- pingResponse: {} -+-", result);
+			}
 		}
 		
 		return result;
 	}
 
-	public Ping2Response ping2(PingRequest request) {
+	public Ping2Response ping2(KeyRequest request) {
 		Ping2Response result = new Ping2Response();
-		log.info("-+- pingRequest: {} -+-", request);
+		if (log.isDebugEnabled()) {
+			log.debug("-+- pingRequest: {} -+-", request);
+		}
 		ResponseEntity<Ping2Response> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/ping2.json", request, Ping2Response.class);
 
 		if (fetchResult.getStatusCode() == HttpStatus.OK) {
 			result = fetchResult.getBody();
-			log.info("-+- ping2Response: {} -+-", result);
+			if (log.isDebugEnabled()) {
+				log.debug("-+- ping2Response: {} -+-", result);
+			}
 		}
 		
 		return result;
 	}
 
-	public Sender[] senders(PingRequest request) {
-		Sender[] result = null;
-		log.debug("-+- sendersRequest: {} -+-", request);
-		ResponseEntity<Sender[]> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/senders.json", request, Sender[].class);
+	public SenderResponse[] senders(KeyRequest request) {
+		SenderResponse[] result = null;
+		if (log.isDebugEnabled()) {
+			log.debug("-+- sendersRequest: {} -+-", request);
+		}
+		ResponseEntity<SenderResponse[]> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/senders.json", request, SenderResponse[].class);
 		
 		if (fetchResult.getStatusCode() == HttpStatus.OK) {
 			result = fetchResult.getBody();
 			if (log.isDebugEnabled()) {
-				for (Sender sender: result) {
+				for (SenderResponse sender: result) {
 					log.debug("-+- sender: {} -+-", sender);
 				}				
 			}

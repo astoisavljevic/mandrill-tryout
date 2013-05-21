@@ -13,7 +13,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author Aleksandar Stoisavljevic
  *
  */
-public class Sender implements Serializable {
+public class SenderResponse implements Serializable {
 	private static final long serialVersionUID = -3469025994295384795L;
 	
 	private String address;
@@ -29,7 +29,7 @@ public class Sender implements Serializable {
 	private Integer uniqueOpens;
 	private Integer uniqueClicks;
 	
-	public Sender() {
+	public SenderResponse() {
 		
 	}
 	

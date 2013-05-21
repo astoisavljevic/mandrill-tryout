@@ -1,7 +1,7 @@
 /**
  * 
  */
-package rs.in.staleksit.learning.mandrill.model.user;
+package rs.in.staleksit.learning.mandrill.model.request;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
