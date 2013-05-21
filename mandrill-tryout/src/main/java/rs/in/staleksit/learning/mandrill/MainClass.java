@@ -25,9 +25,10 @@ public class MainClass {
 		@SuppressWarnings("resource")
 		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
 		UserService userService = appContext.getBean(UserServiceImpl.class);
-		userService.getUserInfo(new InfoRequest(API_KEY));
-		userService.ping(new PingRequest(API_KEY));
-		userService.ping2(new PingRequest(API_KEY));
+		// userService.getUserInfo(new InfoRequest(API_KEY));
+		// userService.ping(new PingRequest(API_KEY));
+		// userService.ping2(new PingRequest(API_KEY));
+		userService.senders(new PingRequest(API_KEY));
 	}
 
 }

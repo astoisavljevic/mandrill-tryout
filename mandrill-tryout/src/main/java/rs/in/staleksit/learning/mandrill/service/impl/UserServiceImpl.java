@@ -16,6 +16,7 @@ import rs.in.staleksit.learning.mandrill.model.user.InfoRequest;
 import rs.in.staleksit.learning.mandrill.model.user.InfoResponse;
 import rs.in.staleksit.learning.mandrill.model.user.Ping2Response;
 import rs.in.staleksit.learning.mandrill.model.user.PingRequest;
+import rs.in.staleksit.learning.mandrill.model.user.Sender;
 import rs.in.staleksit.learning.mandrill.service.UserService;
 
 /**
@@ -67,6 +68,22 @@ public class UserServiceImpl implements UserService {
 			log.info("-+- ping2Response: {} -+-", result);
 		}
 		
+		return result;
+	}
+
+	public Sender[] senders(PingRequest request) {
+		Sender[] result = null;
+		log.debug("-+- sendersRequest: {} -+-", request);
+		ResponseEntity<Sender[]> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/senders.json", request, Sender[].class);
+		
+		if (fetchResult.getStatusCode() == HttpStatus.OK) {
+			result = fetchResult.getBody();
+			if (log.isDebugEnabled()) {
+				for (Sender sender: result) {
+					log.debug("-+- sender: {} -+-", sender);
+				}				
+			}
+		}
 		return result;
 	}
 

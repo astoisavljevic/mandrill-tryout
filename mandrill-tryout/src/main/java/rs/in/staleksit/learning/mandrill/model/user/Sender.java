@@ -5,6 +5,8 @@ package rs.in.staleksit.learning.mandrill.model.user;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -24,6 +26,8 @@ public class Sender implements Serializable {
 	private Integer unsubs;
 	private Integer opens;
 	private Integer clicks;
+	private Integer uniqueOpens;
+	private Integer uniqueClicks;
 	
 	public Sender() {
 		
@@ -95,7 +99,26 @@ public class Sender implements Serializable {
 	public void setClicks(Integer clicks) {
 		this.clicks = clicks;
 	}
+
+	public Integer getUniqueOpens() {
+		return uniqueOpens;
+	}
+	@JsonProperty("unique_opens")
+	public void setUniqueOpens(Integer uniqueOpens) {
+		this.uniqueOpens = uniqueOpens;
+	}
+
+	public Integer getUniqueClicks() {
+		return uniqueClicks;
+	}
+	@JsonProperty("unique_clicks")
+	public void setUniqueClicks(Integer uniqueClicks) {
+		this.uniqueClicks = uniqueClicks;
+	}
 	
-	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 
 }
