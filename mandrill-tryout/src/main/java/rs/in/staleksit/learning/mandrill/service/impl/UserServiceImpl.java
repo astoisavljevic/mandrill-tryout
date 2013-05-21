@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import rs.in.staleksit.learning.mandrill.model.request.KeyRequest;
@@ -56,14 +57,22 @@ public class UserServiceImpl implements UserService {
 		if (log.isDebugEnabled()) {
 			log.debug("-+- pingRequest: {} -+-", request);
 		}
-		ResponseEntity<String> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/ping.json", request, String.class);
+		
+		try {
+			ResponseEntity<String> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/users/ping.json", request, String.class);
 
-		if (fetchResult.getStatusCode() == HttpStatus.OK) {
-			result = fetchResult.getBody();
-			if (log.isDebugEnabled()) {
-				log.debug("-+- pingResponse: {} -+-", result);
+			if (fetchResult.getStatusCode() == HttpStatus.OK) {
+				result = fetchResult.getBody();
+				if (log.isDebugEnabled()) {
+					log.debug("-+- pingResponse: {} -+-", result);
+				}
 			}
+			
+		} catch (HttpServerErrorException ex) {
+			
+			log.error("-+- Error: {} -+-", ex);
 		}
+
 		
 		return result;
 	}

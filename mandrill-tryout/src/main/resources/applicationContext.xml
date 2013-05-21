@@ -22,10 +22,13 @@
 		<!-- ### Spring REST Template - using to communicate to PaymentProvider ### -->
 		<bean id="restTemplate" class="org.springframework.web.client.RestTemplate" 
 			p:requestFactory-ref="httpClientFactory" 
-			p:messageConverters-ref="restTemplateMessageConverters" />
+			p:messageConverters-ref="restTemplateMessageConverters" 
+			p:errorHandler-ref="customResponseErrorHandler" />
 		
 		<util:list id="restTemplateMessageConverters">
 			<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 		</util:list>			
+		
+		<bean id="customResponseErrorHandler" class="rs.in.staleksit.learning.mandrill.handlers.CustomResponseErrorHandler" />
 			
 </beans>
