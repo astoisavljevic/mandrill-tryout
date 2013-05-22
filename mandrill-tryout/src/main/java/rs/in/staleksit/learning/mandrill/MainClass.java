@@ -24,9 +24,13 @@ public class MainClass {
 		@SuppressWarnings("resource")
 		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
 		UserService userService = appContext.getBean(UserServiceImpl.class);
+		// test /users/info.json
 		userService.getUserInfo(new KeyRequest(API_KEY));
+		// test /users/ping.json
 		userService.ping(new KeyRequest(API_KEY));
+		// test /users/ping2.json
 		userService.ping2(new KeyRequest(API_KEY));
+		// test /users/senders.json
 		userService.senders(new KeyRequest(API_KEY));
 	}
 

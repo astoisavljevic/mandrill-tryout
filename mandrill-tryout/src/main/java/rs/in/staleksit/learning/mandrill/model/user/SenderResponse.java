@@ -7,12 +7,14 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * @author Aleksandar Stoisavljevic
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SenderResponse implements Serializable {
 	private static final long serialVersionUID = -3469025994295384795L;
 	
@@ -26,8 +28,10 @@ public class SenderResponse implements Serializable {
 	private Integer unsubs;
 	private Integer opens;
 	private Integer clicks;
+	/**
 	private Integer uniqueOpens;
 	private Integer uniqueClicks;
+	**/
 	
 	public SenderResponse() {
 		
@@ -100,6 +104,7 @@ public class SenderResponse implements Serializable {
 		this.clicks = clicks;
 	}
 
+	/**
 	public Integer getUniqueOpens() {
 		return uniqueOpens;
 	}
@@ -115,6 +120,7 @@ public class SenderResponse implements Serializable {
 	public void setUniqueClicks(Integer uniqueClicks) {
 		this.uniqueClicks = uniqueClicks;
 	}
+	**/
 	
 	@Override
 	public String toString() {
