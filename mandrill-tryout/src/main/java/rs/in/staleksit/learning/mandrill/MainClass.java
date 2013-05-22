@@ -6,9 +6,12 @@ package rs.in.staleksit.learning.mandrill;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import rs.in.staleksit.learning.mandrill.model.message.request.RawMessageRequest;
+import rs.in.staleksit.learning.mandrill.model.tag.request.TagListRequest;
 import rs.in.staleksit.learning.mandrill.service.MessagesService;
+import rs.in.staleksit.learning.mandrill.service.TagService;
 import rs.in.staleksit.learning.mandrill.service.UserService;
 import rs.in.staleksit.learning.mandrill.service.impl.MessageServiceImpl;
+import rs.in.staleksit.learning.mandrill.service.impl.TagServiceImpl;
 import rs.in.staleksit.learning.mandrill.service.impl.UserServiceImpl;
 
 /**
@@ -51,7 +54,11 @@ public class MainClass {
 //		
 //		messagesService.sendRaw(rawMessageRequest);
 		
+		TagService tagService = appContext.getBean(TagServiceImpl.class);
+		TagListRequest tagListRequest = new TagListRequest();
+		tagListRequest.setApiKey(API_KEY);
 		
+		tagService.list(tagListRequest);
 	}
 
 }
