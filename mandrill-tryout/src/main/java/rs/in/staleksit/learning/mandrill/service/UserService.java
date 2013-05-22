@@ -4,9 +4,9 @@
 package rs.in.staleksit.learning.mandrill.service;
 
 import rs.in.staleksit.learning.mandrill.model.request.KeyRequest;
-import rs.in.staleksit.learning.mandrill.model.user.InfoResponse;
-import rs.in.staleksit.learning.mandrill.model.user.Ping2Response;
-import rs.in.staleksit.learning.mandrill.model.user.SenderResponse;
+import rs.in.staleksit.learning.mandrill.model.user.response.InfoResponse;
+import rs.in.staleksit.learning.mandrill.model.user.response.Ping2Response;
+import rs.in.staleksit.learning.mandrill.model.user.response.SenderResponse;
 
 /**
  * @author aleksandar

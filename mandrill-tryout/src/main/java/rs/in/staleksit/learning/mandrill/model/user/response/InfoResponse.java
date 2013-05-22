@@ -1,7 +1,7 @@
 /**
  * 
  */
-package rs.in.staleksit.learning.mandrill.model.user;
+package rs.in.staleksit.learning.mandrill.model.user.response;
 
 import java.io.Serializable;
 

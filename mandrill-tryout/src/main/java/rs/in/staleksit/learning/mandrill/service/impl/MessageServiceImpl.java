@@ -7,9 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import rs.in.staleksit.learning.mandrill.model.message.request.RawMessageRequest;
+import rs.in.staleksit.learning.mandrill.model.message.response.RawMessageResponse;
+import rs.in.staleksit.learning.mandrill.model.user.response.SenderResponse;
 import rs.in.staleksit.learning.mandrill.service.MessagesService;
 
 /**
@@ -60,11 +65,20 @@ public class MessageServiceImpl implements MessagesService {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see rs.in.staleksit.learning.mandrill.service.MessagesService#sendRaw()
-	 */
-	public void sendRaw() {
-		// TODO Auto-generated method stub
+	public void sendRaw(RawMessageRequest rawMessageRequest) {
+		if (log.isDebugEnabled()) {
+			log.debug("-+- rawMessageRequest: {} -+-", rawMessageRequest);
+		}
+		
+		ResponseEntity<RawMessageResponse[]> fetchResult = restTemplate.postForEntity("https://mandrillapp.com/api/1.0/messages/send-raw.json", rawMessageRequest, RawMessageResponse[].class);
+		
+		if (fetchResult.getStatusCode() == HttpStatus.OK) {
+			if (log.isDebugEnabled()) {
+				for (RawMessageResponse item: fetchResult.getBody()) {
+					log.debug("-+- rawMessageResponse: {} -+-", item);
+				}
+			}
+		}
 
 	}
 
